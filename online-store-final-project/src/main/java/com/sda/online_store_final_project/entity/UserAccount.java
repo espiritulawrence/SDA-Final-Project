@@ -1,6 +1,8 @@
 package com.sda.online_store_final_project.entity;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.NaturalId;
 
 import javax.persistence.*;
@@ -11,6 +13,8 @@ import javax.validation.constraints.Size;
 
 @Entity
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Table(name = "accounts")
 public class UserAccount {
 
@@ -30,8 +34,7 @@ public class UserAccount {
     private String phone;
     @NotEmpty
     private String address;
-    @NotNull
-    private boolean active;
+
     @NotEmpty
     private String role;
 
