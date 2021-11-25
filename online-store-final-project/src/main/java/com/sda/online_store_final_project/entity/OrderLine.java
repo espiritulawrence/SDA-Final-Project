@@ -1,6 +1,8 @@
 package com.sda.online_store_final_project.entity;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.Min;
@@ -12,6 +14,8 @@ import java.util.Objects;
 
 @Entity
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 
 public class OrderLine {
     @Id
@@ -19,37 +23,41 @@ public class OrderLine {
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "order_id")
+    @JoinColumn(name = "ORDER_ID")
     private OrderMain orderMain;
 
     @NotEmpty
+    @Column(name = "PRODUCT_ID")
     private String productId;
 
     @NotEmpty
+    @Column(name = "PRODUCT_NAME")
     private String productName;
 
     @NotNull
+    @Column(name = "PRODUCT_DESCRIPTION")
     private String productDescription;
 
-    private String productIcon;
+    @Column(name = "PRODUCT_IMAGE")
+    private String productImage;
 
     @NotNull
+    @Column(name = "PRODUCT_TYPE")
     private Integer categoryType;
 
     @NotNull
+    @Column(name = "PRODUCT_PRICE")
     private BigDecimal productPrice;
 
     @Min(1)
+    @Column(name = "QUANTITY")
     private Integer productQuantity;
-
-    public OrderLine() {
-    }
 
     public OrderLine(Product product, Integer quantity) {
         this.productId = product.getProductId();
         this.productName = product.getProductName();
         this.productDescription = product.getProductDescription();
-        this.productIcon = product.getProductImage();
+        this.productImage = product.getProductImage();
         this.categoryType = product.getCategoryType();
         this.productPrice = product.getProductPrice();
         this.productQuantity = quantity;
@@ -63,7 +71,7 @@ public class OrderLine {
                 ", productId='" + productId + '\'' +
                 ", productName='" + productName + '\'' +
                 ", productDescription='" + productDescription + '\'' +
-                ", productIcon='" + productIcon + '\'' +
+                ", productIcon='" + productImage + '\'' +
                 ", categoryType=" + categoryType +
                 ", productPrice=" + productPrice +
                 ", productQuantity=" + productQuantity +
@@ -80,7 +88,7 @@ public class OrderLine {
                 Objects.equals(productId, that.productId) &&
                 Objects.equals(productName, that.productName) &&
                 Objects.equals(productDescription, that.productDescription) &&
-                Objects.equals(productIcon, that.productIcon) &&
+                Objects.equals(productImage, that.productImage) &&
                 Objects.equals(categoryType, that.categoryType) &&
                 Objects.equals(productPrice, that.productPrice) &&
                 Objects.equals(productQuantity, that.productQuantity);
@@ -89,6 +97,6 @@ public class OrderLine {
     @Override
     public int hashCode() {
 
-        return Objects.hash(super.hashCode(), id, productId, productName, productDescription, productIcon, categoryType, productPrice, productQuantity);
+        return Objects.hash(super.hashCode(), id, productId, productName, productDescription, productImage, categoryType, productPrice, productQuantity);
     }
 }

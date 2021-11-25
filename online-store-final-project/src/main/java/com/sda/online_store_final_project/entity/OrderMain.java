@@ -1,9 +1,10 @@
 package com.sda.online_store_final_project.entity;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
@@ -16,11 +17,14 @@ import java.util.Set;
 
 @Entity
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 
 public class OrderMain {
     @Id
     @NotNull
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "ORDER_ID")
     private Long orderId;
 
     @OneToMany(cascade = CascadeType.ALL,
@@ -29,34 +33,34 @@ public class OrderMain {
     private Set<OrderLine> products = new HashSet<>();
 
     @NotEmpty
+    @Column(name = "CUSTOMER_EMAIL")
     private String customerEmail;
 
     @NotEmpty
+    @Column(name = "CUSTOMER_NAME")
     private String customerName;
 
     @NotEmpty
+    @Column(name = "CUSTOMER_PHONE")
     private String customerPhone;
 
     @NotEmpty
+    @Column(name = "CUSTOMER_ADDRESS")
     private String customerAddress;
 
     // Total Amount
     @NotNull
+    @Column(name = "AMOUNT")
     private BigDecimal orderAmount;
 
     @NotNull
     @ColumnDefault("0")
+    @Column(name = "ORDER_STATUS")
     private Integer orderStatus;
 
     @CreationTimestamp
+    @Column(name = "ORDER_DATE")
     private LocalDateTime createTime;
-
-    @UpdateTimestamp
-    private LocalDateTime updateTime;
-
-    public OrderMain(){
-
-    }
 
     public OrderMain(UserAccount customer) {
         this.customerEmail = customer.getEmail();
