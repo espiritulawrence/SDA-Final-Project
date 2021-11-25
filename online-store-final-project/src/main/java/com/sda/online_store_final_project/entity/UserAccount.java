@@ -5,7 +5,6 @@ import org.hibernate.annotations.NaturalId;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 
@@ -16,23 +15,33 @@ public class UserAccount {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "ACCOUNT_ID")
     private Long id;
 
     @NaturalId
     @NotEmpty
+    @Column(name = "USER_EMAIL")
     private String email;
+
     @NotEmpty
+    @Column(name = "USER_PASSWORD")
     @Size(min=3, message = "Length must be more than 3")
     private String password;
+
     @NotEmpty
+    @Column(name = "USER_NAME")
     private String name;
+
     @NotEmpty
+    @Column(name = "PHONE")
     private String phone;
+
     @NotEmpty
+    @Column(name = "ADDRESS")
     private String address;
-    @NotNull
-    private boolean active;
+
     @NotEmpty
+    @Column(name = "ACCOUNT_ROLE")
     private String role;
 
 
