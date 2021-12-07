@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="css/style.css">
+
+
+    <link rel="stylesheet" type="text/css"
+          th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}" />
+    <title>Admin Home</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        .bd-placeholder-img {
+            font-size: 1.125rem;
+            text-anchor: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            user-select: none;
+        }
+
+        @media (min-width: 768px) {
+            .bd-placeholder-img-lg {
+                font-size: 3.5rem;
+            }
+        }
+    </style>
+
+
+    <!-- Custom styles for this template -->
+    <link href="footers.css" rel="stylesheet">
+</head>
+
+<body>
+<nav class="navbar navbar-expand-lg navbar-light navbar-default navbar-fixed-top" style="background-color: #820006;">
+    <div class="container-fluid">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDarkDropdown" aria-controls="navbarNavDarkDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <a class="navbar-brand" th:href="@{/home}">
+            <img width="30px" height="" src="/image/llrlogo.png">
+        </a>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="nav navbar-nav">
+                <li class="dropdown">
+                    <a href="#" class="nav-link dropdown-toggle px-2 text-white me-auto mb-2 mb-lg-0" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Meat and Seafood</a>
+                    <ul class="dropdown-menu">
+                        <li><a th:href="@{/subcategory/1}" class="dropdown-item">Beef</a></li>
+                        <li><a th:href="@{/subcategory/2}" class="dropdown-item">Pork</a></li>
+                        <li><a th:href="@{/subcategory/3}" class="dropdown-item">Chicken</a></li>
+                        <li><a th:href="@{/subcategory/4}" class="dropdown-item">Seafood</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a th:href="@{/category/1}">See All</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="nav-link dropdown-toggle px-2 text-white me-auto mb-2 mb-lg-0" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Produce</a>
+                    <ul class="dropdown-menu">
+                        <li><a th:href="@{/subcategory/5}"  class="dropdown-item">Fruit</a></li>
+                        <li><a th:href="@{/subcategory/6}" class="dropdown-item">Vegetable</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a th:href="@{/category/2}">See All</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="nav-link dropdown-toggle px-2 text-white me-auto mb-2 mb-lg-0" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Pantry</a>
+                    <ul class="dropdown-menu">
+                        <li><a th:href="@{/subcategory/7}" class="dropdown-item">Rice, Grains and Pasta</a></li>
+                        <li><a th:href="@{/subcategory/8}" class="dropdown-item">Cooking and Baking</a></li>
+                        <li><a th:href="@{/subcategory/9}" class="dropdown-item">Spices and Seasonings</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a th:href="@{/category/3}">See All</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="nav-link dropdown-toggle px-2 text-white me-auto mb-2 mb-lg-0" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Liquor and Beverages</a>
+                    <ul class="dropdown-menu">
+                        <li><a th:href="@{/subcategory/10}" class="dropdown-item">Wine</a></li>
+                        <li><a th:href="@{/subcategory/11}" class="dropdown-item">Beer</a></li>
+                        <li><a th:href="@{/subcategory/12}" class="dropdown-item">Coffee</a></li>
+                        <li><a th:href="@{/subcategory/13}" class="dropdown-item">Tea</a></li>
+                        <li><a th:href="@{/subcategory/14}" class="dropdown-item">Soda</a></li>
+                        <li><a th:href="@{/subcategory/15}" class="dropdown-item">Juice</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a th:href="@{/category/4}">See All</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="nav-link dropdown-toggle px-2 text-white me-auto mb-2 mb-lg-0" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Bakery</a>
+                    <ul class="dropdown-menu">
+                        <li><a th:href="@{/subcategory/16}" class="dropdown-item">Breads and Pastries</a></li>
+                        <li><a th:href="@{/subcategory/17}" class="dropdown-item">Cookies</a></li>
+                        <li><a th:href="@{/subcategory/18}" class="dropdown-item">Cookies and Muffins</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a th:href="@{/category/5}">See All</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="nav-link dropdown-toggle px-2 text-white me-auto mb-2 mb-lg-0" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dairy</a>
+                    <ul class="dropdown-menu">
+                        <li><a th:href="@{/subcategory/19}" class="dropdown-item">Butter and Margarine</a></li>
+                        <li><a th:href="@{/subcategory/20}" class="dropdown-item">Cheese</a></li>
+                        <li><a th:href="@{/subcategory/21}" class="dropdown-item">Milk and Cream</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a th:href="@{/category/6}">See All</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="nav-link dropdown-toggle px-2 text-white me-auto mb-2 mb-lg-0" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Deli and Prepared Foods</span></a>
+                    <ul class="dropdown-menu">
+                        <li><a th:href="@{/subcategory/22}" class="dropdown-item">Meal Kits</a></li>
+                        <li><a th:href="@{/subcategory/23}" class="dropdown-item">Deli Meats</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a th:href="@{/category/7}">See All</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <form class="navbar-form navbar-left" th:action="@{/search}" method="get">
+                <div class="form-group">
+                    <input type="text" name="keyword" id="keyword" class="form-control" placeholder="Search">
+                </div>
+                <button type="submit" class="btn btn-default">Submit</button>
+            </form>
+            <ul class="nav navbar-nav">
+                <li sec:authorize="isAuthenticated()"><a th:href="@{/logout}" class="nav-link px-2 text-white">Logout</a></li>
+                <li sec:authorize="isAnonymous()"><a th:href="@{/login}" class="nav-link px-2 text-white">Login</a></li>
+                <li><a th:href="@{/order}" class="nav-link px-2 text-white">Orders</a></li>
+                </li>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+</nav>
+<br><br><br><br>
+
+                <!-- /.box-header -->
+                <!-- form start -->
+                <form th:action="@{/admin/product/save}" th:object="${product}" method="post" class="form-horizontal">
+                    <div class="box-body">
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Product Id</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" th:value="${product.productId}"                             th:field="*{productId}">
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Category:<span>*</span></label>
+                            <div class="col-sm-10">
+                                <select class="form-control" th:field="*{categoryId}">
+                                    <option value="1">Meat and Seafood</option>
+                                    <option value="2">Produce</option>
+                                    <option value="3">Pantry</option>
+                                </select>
+                                <p class="text-red" th:if="${#fields.hasErrors('categoryId')}" th:errors="*{categoryId}"></p>
+                            </div>
+                        </div>
+
+
+
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Sub Category:<span>*</span></label>
+                            <div class="col-sm-10">
+                                <select class="form-control" th:field="*{subCategoryId}">
+                                    <option value="1">Beef</option>
+                                    <option value="2">Pork</option>
+                                    <option value="3">Chicken</option>
+                                    <option value="4">Seafood</option>
+                                    <option value="5">Fruit</option>
+                                    <option value="6">Vegetable</option>
+                                    <option value="7">Rice, Grains and Pasta</option>
+                                    <option value="8">Cooking and Baking</option>
+                                    <option value="9">Spices and Seasonings</option>
+                                    <option value="10">Wine</option>
+                                    <option value="11">Beer</option>
+                                    <option value="12">Coffee</option>
+                                    <option value="13">Tea</option>
+                                    <option value="14">Soda</option>
+                                    <option value="15">Juice</option>
+                                    <option value="16">Breads and Pastries</option>
+                                    <option value="17">Cakes</option>
+                                    <option value="18">Cookies and Muffins</option>
+                                    <option value="19">Butter and Margarine</option>
+                                    <option value="20">Cheese</option>
+                                    <option value="21">Milk and Cream</option>
+                                    <option value="22">Meal kits</option>
+                                    <option value="23">Deli Meats</option>
+                                </select>
+                                <p class="text-red" th:if="${#fields.hasErrors('subCategoryId')}" th:errors="*{subCategoryId}"></p>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Name</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" th:field="*{productName}" />
+                                <p class="text-red" th:if="${#fields.hasErrors('productName')}" th:errors="*{productName}"></p>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Image</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" th:field="*{productImage}" />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Description</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" th:field="*{productDescription}" />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Price</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" th:field="*{productPrice}" />
+                                <p class="text-red" th:if="${#fields.hasErrors('productPrice')}" th:errors="*{productPrice}"></p>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Stock</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" th:field="*{productStock}" />
+                                <p class="text-red" th:if="${#fields.hasErrors('productStock')}" th:errors="*{productStock}"></p>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Status</label>
+                            <div class="col-sm-10">
+                                <select class="custom-select custom-select-lg " th:field="*{productStatus}" name="productStatus" required="true">
+                                    <option value="0">Available</option>
+                                    <option value="1">Unavailable</option>
+                                </select>
+                                <p class="text-red" th:if="${#fields.hasErrors('productStatus')}" th:errors="*{productStatus}"></p>
+                            </div>
+                        </div>
+
+                    </div>
+                    <!-- /.box-body -->
+                    <div class="box-footer center">
+                        <a th:href="@{/admin/product}">
+                            <button type="button" class="btn btn-default"><i class="fa fa-right"></i> Cancel</button>
+                        </a>
+                        <a th:href="@{/admin/product}">
+                        <button type="submit" class="btn btn-info pull-right"><i class="fa fa-save"></i> Save</button>
+                        </a>
+                    </div>
+                    <!-- /.box-footer -->
+                </form>
+            </div>
+            <!-- /.box -->
+        </div>
+    </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="container">
+    <p class="float-end"><a href="#">Back to top</a></p>
+    <p>&copy; 2021 LLR Food Shop, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
+</footer>
+
+<th:block layout:fragment="script">
+    <script>
+    </script>
+</th:block>
+
+</body>
+
+</html>
