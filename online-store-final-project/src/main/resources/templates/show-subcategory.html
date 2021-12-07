@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="css/style.css">
+
+
+    <link rel="stylesheet" type="text/css"
+          th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}" />
+    <title>[[${pageTitle}]] - [[${siteName}]]</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        .bd-placeholder-img {
+            font-size: 1.125rem;
+            text-anchor: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            user-select: none;
+        }
+
+        @media (min-width: 768px) {
+            .bd-placeholder-img-lg {
+                font-size: 3.5rem;
+            }
+        }
+    </style>
+
+
+    <!-- Custom styles for this template -->
+    <link href="footers.css" rel="stylesheet">
+</head>
+
+<body>
+<nav class="navbar navbar-expand-lg navbar-light navbar-default navbar-fixed-top" style="background-color: #820006;">
+    <div class="container-fluid">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDarkDropdown" aria-controls="navbarNavDarkDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <a class="navbar-brand" th:href="@{/home}">
+            <img width="30px" height="" src="/image/llrlogo.png">
+        </a>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="nav navbar-nav">
+                <li class="dropdown">
+                    <a href="#" class="nav-link dropdown-toggle px-2 text-white me-auto mb-2 mb-lg-0" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Meat and Seafood</a>
+                    <ul class="dropdown-menu">
+                        <li><a th:href="@{/subcategory/1}" class="dropdown-item">Beef</a></li>
+                        <li><a th:href="@{/subcategory/2}" class="dropdown-item">Pork</a></li>
+                        <li><a th:href="@{/subcategory/3}" class="dropdown-item">Chicken</a></li>
+                        <li><a th:href="@{/subcategory/4}" class="dropdown-item">Seafood</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a th:href="@{/category/1}">See All</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="nav-link dropdown-toggle px-2 text-white me-auto mb-2 mb-lg-0" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Produce</a>
+                    <ul class="dropdown-menu">
+                        <li><a th:href="@{/subcategory/5}"  class="dropdown-item">Fruit</a></li>
+                        <li><a th:href="@{/subcategory/6}" class="dropdown-item">Vegetable</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a th:href="@{/category/2}">See All</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="nav-link dropdown-toggle px-2 text-white me-auto mb-2 mb-lg-0" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Pantry</a>
+                    <ul class="dropdown-menu">
+                        <li><a th:href="@{/subcategory/7}" class="dropdown-item">Rice, Grains and Pasta</a></li>
+                        <li><a th:href="@{/subcategory/8}" class="dropdown-item">Cooking and Baking</a></li>
+                        <li><a th:href="@{/subcategory/9}" class="dropdown-item">Spices and Seasonings</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a th:href="@{/category/3}">See All</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="nav-link dropdown-toggle px-2 text-white me-auto mb-2 mb-lg-0" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Liquor and Beverages</a>
+                    <ul class="dropdown-menu">
+                        <li><a th:href="@{/subcategory/10}" class="dropdown-item">Wine</a></li>
+                        <li><a th:href="@{/subcategory/11}" class="dropdown-item">Beer</a></li>
+                        <li><a th:href="@{/subcategory/12}" class="dropdown-item">Coffee</a></li>
+                        <li><a th:href="@{/subcategory/13}" class="dropdown-item">Tea</a></li>
+                        <li><a th:href="@{/subcategory/14}" class="dropdown-item">Soda</a></li>
+                        <li><a th:href="@{/subcategory/15}" class="dropdown-item">Juice</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a th:href="@{/category/4}">See All</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="nav-link dropdown-toggle px-2 text-white me-auto mb-2 mb-lg-0" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Bakery</a>
+                    <ul class="dropdown-menu">
+                        <li><a th:href="@{/subcategory/16}" class="dropdown-item">Breads and Pastries</a></li>
+                        <li><a th:href="@{/subcategory/17}" class="dropdown-item">Cookies</a></li>
+                        <li><a th:href="@{/subcategory/18}" class="dropdown-item">Cookies and Muffins</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a th:href="@{/category/5}">See All</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="nav-link dropdown-toggle px-2 text-white me-auto mb-2 mb-lg-0" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dairy</a>
+                    <ul class="dropdown-menu">
+                        <li><a th:href="@{/subcategory/19}" class="dropdown-item">Butter and Margarine</a></li>
+                        <li><a th:href="@{/subcategory/20}" class="dropdown-item">Cheese</a></li>
+                        <li><a th:href="@{/subcategory/21}" class="dropdown-item">Milk and Cream</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a th:href="@{/category/6}">See All</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="nav-link dropdown-toggle px-2 text-white me-auto mb-2 mb-lg-0" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Deli and Prepared Foods</span></a>
+                    <ul class="dropdown-menu">
+                        <li><a th:href="@{/subcategory/22}" class="dropdown-item">Meal Kits</a></li>
+                        <li><a th:href="@{/subcategory/23}" class="dropdown-item">Deli Meats</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a th:href="@{/category/7}">See All</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <form class="navbar-form navbar-left" th:action="@{/search}" method="get">
+                <div class="form-group">
+                    <input type="text" name="keyword" id="keyword" class="form-control" placeholder="Search">
+                </div>
+                <button type="submit" class="btn btn-default" >Submit</button>
+            </form>
+            <ul class="nav navbar-nav">
+                <li sec:authorize="isAuthenticated()"><a th:href="@{/logout}" class="nav-link px-2 text-white">Logout</a></li>
+                <li sec:authorize="isAnonymous()"><a th:href="@{/login}" class="nav-link px-2 text-white">Login</a></li>
+                <li><a th:href="@{/order}" class="nav-link px-2 text-white">Order</a></li>
+                <li><a th:href="@{/cart}" class="nav-link px-2 text-white">Cart</a></li>
+            </ul>
+        </div>
+
+    </div>
+</nav>
+<br><br><br><br>
+
+<div class="container">
+    <h1 align="center" class="display-4 mb-5" th:text="${subcategory.subCategoryName}"></h1>
+
+    <div class="row card-deck text-center">
+        <div class="col-lg-4"  th:each="product: ${products}">
+            <div class="card mb-4 ">
+                <img height="50%" class="card-img-top" th:src="${product.getProductImage()}">
+                <div class="card-body">
+                    <h4 class="card-title " th:text="${product.getProductName()}"></h4>
+                    <div class="text-left">
+                        <p class="card-test"><strong>Description: </strong><div th:text="${product.getProductDescription()}"></div></p>
+                        <p class="card-text"><strong>Price: </strong><div th:text="${product.getProductPrice()}"></div></p>
+                        <p class="card-text"><strong>Stock: </strong><div th:text="${product.getProductStock()}"></div></p>
+                    </div>
+                    <a class="btn btn-primary btn-lg"
+                       th:href="@{'/product/' + ${product.getProductId()}}">Get It!</a>
+                </div>
+            </div>
+        </div>
+</div>
+
+</div>
+</body>
+</html>
+

@@ -29,7 +29,7 @@ public class SubCategoryController {
     @GetMapping("/subcategory/{id}")
     public ModelAndView showOne(@PathVariable("id") Integer subCategoryId,
                                 @RequestParam(value = "page", defaultValue = "1") Integer page,
-                                @RequestParam(value = "size", defaultValue = "3") Integer size,
+                                @RequestParam(value = "size", defaultValue = "15") Integer size,
                                 Map<String, Object> map) {
 
         SubCategory res = subCategoryService.findBySubCategoryId(subCategoryId);
