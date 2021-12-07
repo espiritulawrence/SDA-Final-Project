@@ -15,8 +15,9 @@ import java.math.BigDecimal;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "PRODUCT")
+@Table(name = "product")
 public class Product {
+
     @Id
     @Column(name = "PRODUCT_ID")
     private String productId;
@@ -27,8 +28,11 @@ public class Product {
     @Column(name="PRODUCT_PRICE")
     private BigDecimal productPrice;
 
-    @Column(name = "CATEGORY_TYPE")
-    private Integer categoryType;
+    @Column(name = "CATEGORY_ID")
+    private Integer categoryId;
+
+    @Column(name = "SUBCATEGORY_ID")
+    private Integer subCategoryId;
 
     @Column(name = "PRODUCT_STOCK")
     private Integer productStock;

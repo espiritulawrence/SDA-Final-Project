@@ -16,10 +16,13 @@ import java.util.Objects;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Table(name = "order_line")
 
 public class OrderLine {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "ORDER_LINE_ID")
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -42,8 +45,12 @@ public class OrderLine {
     private String productImage;
 
     @NotNull
-    @Column(name = "PRODUCT_TYPE")
-    private Integer categoryType;
+    @Column(name = "CATEGORY_ID")
+    private Integer categoryId;
+
+    @NotNull
+    @Column(name = "SUBCATEGORY_ID")
+    private Integer subCategoryId;
 
     @NotNull
     @Column(name = "PRODUCT_PRICE")
@@ -58,7 +65,8 @@ public class OrderLine {
         this.productName = product.getProductName();
         this.productDescription = product.getProductDescription();
         this.productImage = product.getProductImage();
-        this.categoryType = product.getCategoryType();
+        this.categoryId = product.getCategoryId();
+        this.subCategoryId = product.getSubCategoryId();
         this.productPrice = product.getProductPrice();
         this.productQuantity = quantity;
     }
@@ -72,7 +80,8 @@ public class OrderLine {
                 ", productName='" + productName + '\'' +
                 ", productDescription='" + productDescription + '\'' +
                 ", productIcon='" + productImage + '\'' +
-                ", categoryType=" + categoryType +
+                ", categoryId=" + categoryId +
+                ", subCategoryId=" + subCategoryId +
                 ", productPrice=" + productPrice +
                 ", productQuantity=" + productQuantity +
                 '}';
@@ -89,7 +98,8 @@ public class OrderLine {
                 Objects.equals(productName, that.productName) &&
                 Objects.equals(productDescription, that.productDescription) &&
                 Objects.equals(productImage, that.productImage) &&
-                Objects.equals(categoryType, that.categoryType) &&
+                Objects.equals(categoryId, that.categoryId) &&
+                Objects.equals(subCategoryId, that.subCategoryId) &&
                 Objects.equals(productPrice, that.productPrice) &&
                 Objects.equals(productQuantity, that.productQuantity);
     }
@@ -97,6 +107,6 @@ public class OrderLine {
     @Override
     public int hashCode() {
 
-        return Objects.hash(super.hashCode(), id, productId, productName, productDescription, productImage, categoryType, productPrice, productQuantity);
+        return Objects.hash(super.hashCode(), id, productId, productName, productDescription, productImage, categoryId, subCategoryId, productPrice, productQuantity);
     }
 }

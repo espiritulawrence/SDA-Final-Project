@@ -9,11 +9,13 @@ public interface CategoryService {
 
     List<Category> findAll();
 
-    Category findByCategoryType(Integer categoryType);
+    Category findByCategoryId(Integer categoryId);
 
-    List<Category> findByCategoryTypeIn(List<Integer> categoryTypeList);
+    Category findByCategoryName(String categoryName);
 
     Category save(Category category);
+
+    void  delete(Integer categoryId);
 
 
 }

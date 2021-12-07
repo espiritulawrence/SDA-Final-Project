@@ -1,6 +1,8 @@
 package com.sda.online_store_final_project.service.impl;
 
 import com.sda.online_store_final_project.entity.Category;
+import com.sda.online_store_final_project.enums.ResultEnum;
+import com.sda.online_store_final_project.exception.MyException;
 import com.sda.online_store_final_project.repository.CategoryRepository;
 import com.sda.online_store_final_project.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,19 +21,22 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public List<Category> findAll() {
-        List<Category> res = categoryRepository.findAllByOrderByCategoryType();
+        List<Category> res = categoryRepository.findAllByOrderByCategoryId();
         return res;
     }
 
     @Override
-    public Category findByCategoryType(Integer categoryType) {
-        Category res = categoryRepository.findByCategoryType(categoryType);
+    public Category findByCategoryId(Integer categoryId) {
+        Category res = categoryRepository.findByCategoryId(categoryId);
+        if(res == null) throw new MyException(ResultEnum.CATEGORY_NOT_FOUND);
         return res;
     }
 
+
     @Override
-    public List<Category> findByCategoryTypeIn(List<Integer> categoryTypeList) {
-        List<Category> res = categoryRepository.findByCategoryTypeInOrderByCategoryTypeAsc(categoryTypeList);
+    public Category findByCategoryName(String categoryName) {
+        Category res = categoryRepository.findByCategoryName(categoryName);
+        if(res == null) throw new MyException(ResultEnum.CATEGORY_NOT_FOUND);
         return res;
     }
 
@@ -40,7 +45,8 @@ public class CategoryServiceImpl implements CategoryService {
     public Category save(Category category) {
         return categoryRepository.save(category);
     }
-
-
-
+    @Override
+    public void delete (Integer categoryId) {
+        categoryRepository.deleteById(categoryId);
+    }
 }

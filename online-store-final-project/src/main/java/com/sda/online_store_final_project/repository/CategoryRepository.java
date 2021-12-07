@@ -8,9 +8,14 @@ import java.util.List;
 
 public interface CategoryRepository extends JpaRepository<Category, Integer> {
     // Some category
-    List<Category> findByCategoryTypeInOrderByCategoryTypeAsc(List<Integer> categoryTypes);
+//    List<Category> findByCategoryIdInOrderByCategoryIdCategoryIdAsc(List<Integer> categoryId);
     // All category
-    List<Category> findAllByOrderByCategoryType();
+    List<Category> findAllByOrderByCategoryId();
     // One category
-    Category findByCategoryType(Integer categoryType);
+//    Category findByCategoryType(Integer categoryType);
+
+    Category findByCategoryId(Integer categoryId);
+
+
+    Category findByCategoryName(String categoryName);
 }
