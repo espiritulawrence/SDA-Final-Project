@@ -1,71 +1,179 @@
 package com.sda.online_store_final_project.controller;
 
+
+import com.sda.online_store_final_project.entity.Category;
 import com.sda.online_store_final_project.entity.Product;
+import com.sda.online_store_final_project.entity.SubCategory;
+import com.sda.online_store_final_project.enums.ProductStatusEnum;
 import com.sda.online_store_final_project.service.CategoryService;
 import com.sda.online_store_final_project.service.ProductService;
+import com.sda.online_store_final_project.service.SubCategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.http.ResponseEntity;
+import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
+import java.util.List;
 
-@RestController
+
+@Controller
 public class ProductController {
     @Autowired
     CategoryService categoryService;
     @Autowired
+    SubCategoryService subCategoryService;
+    @Autowired
     ProductService productService;
 
     @GetMapping("/product")
-    public Page<Product> getAllProducts(@RequestParam(value = "page", defaultValue = "1") Integer page,
-                                        @RequestParam(value = "size", defaultValue = "3") Integer size) {
-        PageRequest request = PageRequest.of(page - 1, size);
-        return productService.findAll(request);
+    public String findAll(Model model) {
+        List<Category> categories = categoryService.findAll();
+        model.addAttribute("categories", categories);
+
+        List<SubCategory> subCategories = subCategoryService.findAll();
+        model.addAttribute("subCategories", subCategories);
+
+        List<Product> listProducts = productService.findAll();
+        model.addAttribute("listProducts", listProducts);
+
+        return "list-product";
     }
 
+    @GetMapping("/admin/product")
+    public String adminFindAll(Model model) {
+        List<Category> categories = categoryService.findAll();
+        model.addAttribute("categories", categories);
+
+        List<SubCategory> subCategories = subCategoryService.findAll();
+        model.addAttribute("subCategories", subCategories);
+
+        List<Product> listProducts = productService.findAll();
+        model.addAttribute("listProducts", listProducts);
+
+        return "admin-list-product";
+    }
+
+
     @GetMapping("/product/{productId}")
-    public Product getProductById(@PathVariable("productId") String productId) {
+    public String showOne(@PathVariable("productId") String productId, Model model) {
 
         Product product = productService.findOne(productId);
 
-
-        return product;
+        // Product is not available
+        if (product.getProductStatus() == ProductStatusEnum.DOWN.getCode()) {
+            model.addAttribute("msg", "Product is unavailable!");
+            model.addAttribute("url", "/");
+            return  "common/error";
+        }
+        model.addAttribute(product);
+        return "/show";
     }
 
-    @PostMapping("/seller/product/new")
-    public ResponseEntity addProduct(@Valid @RequestBody Product product,
-                                 BindingResult bindingResult) {
+
+
+    @PostMapping("/admin/product/new")
+    public String create(
+            @RequestParam("categoryId") Integer categoryId,
+            @RequestParam("subCategoryId") Integer subCategoryId,
+            @RequestParam("productStatus") Integer productStatus,
+            @Valid @ModelAttribute("product") Product product,
+            RedirectAttributes redirectAttributes,
+            BindingResult bindingResult, Model model) {
+        model.addAttribute("product", product);
         Product productIdExists = productService.findOne(product.getProductId());
         if (productIdExists != null) {
-            bindingResult.rejectValue("productId", "error.product",
+            bindingResult
+                    .rejectValue("productId", "error.product",
                             "There is already a product with the code provided");
         }
         if (bindingResult.hasErrors()) {
-            return ResponseEntity.badRequest().body(bindingResult);
+            redirectAttributes.addFlashAttribute("product", product);
+            return "/add-edit-product";
         }
-        return ResponseEntity.ok(productService.save(product));
+        product.setProductStatus(productStatus);
+        product.setCategoryId(categoryId);
+        product.setSubCategoryId(subCategoryId);
+        productService.save(product);
+//        return "redirect:" + "/";
+        return "/add-edit-product";
+
     }
 
-    @PutMapping("/seller/product/{id}/edit")
-    public ResponseEntity updateProduct(@PathVariable("id") String productId,
-                               @Valid @RequestBody Product product,
-                               BindingResult bindingResult) {
+    @GetMapping("/admin/product/new")
+    public String createForm(Product product,
+                             Model model) {
+
+        model.addAttribute("product", product);
+        return "/add-edit-product";
+    }
+
+    @GetMapping("/admin/product/edit/{id}")
+    public String productEdit(@PathVariable("id") String productId,
+                              Model model){
+        Product product = productService.findOne(productId);
+        model.addAttribute("product", product);
+
+        return "/add-edit-product";
+    }
+
+    @PostMapping("/admin/product/edit/{id}/")
+    public String edit(@PathVariable("id") String productId,
+                       @RequestParam("categoryId") Integer categoryId,
+                       @RequestParam("subCategoryId") Integer subCategoryId,
+                       @RequestParam("productStatus") Integer productStatus,
+                       @Valid @ModelAttribute("product") Product product,
+                       RedirectAttributes redirectAttributes,
+                       BindingResult bindingResult, Model model){
+
         if (bindingResult.hasErrors()) {
-            return ResponseEntity.badRequest().body(bindingResult);
+            redirectAttributes.addFlashAttribute("product", product);
+            return "/admin/product/edit/" + productId ;
+
         }
         if (!productId.equals(product.getProductId())) {
-            return ResponseEntity.badRequest().body("Id Not Matched");
+            model.addAttribute("msg", "Product id does not exist!");
+            model.addAttribute("url", "/");
+            return  "common/error";
+        }
+        product.setCategoryId(categoryId);
+        product.setSubCategoryId(subCategoryId);
+        product.setProductStatus(productStatus);
+        productService.update(product);
+        return "redirect:" + "/";
+    }
+
+    @PostMapping("/admin/product/save")
+    public String saveProduct(@Valid @ModelAttribute("product") Product product, BindingResult result, Model model){
+        model.addAttribute("product", product);
+        List<SubCategory> subCategories = subCategoryService.findAll();
+        model.addAttribute("subcategories",subCategories);
+
+        if(result.hasErrors()){
+            return "/add-edit-product";
         }
 
-        return ResponseEntity.ok(productService.update(product));
+        productService.save(product);
+        return "redirect:" + "/";
     }
 
-    @DeleteMapping("/seller/product/{id}/delete")
-    public ResponseEntity deleteProduct(@PathVariable("id") String productId) {
+    @GetMapping("/admin/product/delete/{id}")
+    public String delete(@PathVariable("id") String productId, Model model) {
         productService.delete(productId);
-        return ResponseEntity.ok().build();
+        return "redirect:" + "/";
     }
+
+    @GetMapping("/search")
+    public String search(@Param("keyword") String keyword, Model model) {
+        List<Product> searchResult = productService.search(keyword);
+        model.addAttribute("keyword", keyword);
+        model.addAttribute("pageTitle", "Search results for '" + keyword + "'");
+        model.addAttribute("searchResult", searchResult);
+
+        return "search-results";
+    }
+
 }
