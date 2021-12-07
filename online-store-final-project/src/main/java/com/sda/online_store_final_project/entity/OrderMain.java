@@ -10,7 +10,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -19,11 +19,12 @@ import java.util.Set;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Table(name = "orders")
 
 public class OrderMain {
     @Id
-    @NotNull
-    @GeneratedValue(strategy = GenerationType.AUTO)
+//    @NotNull
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ORDER_ID")
     private Long orderId;
 
@@ -60,7 +61,7 @@ public class OrderMain {
 
     @CreationTimestamp
     @Column(name = "ORDER_DATE")
-    private LocalDateTime createTime;
+    private Date createTime;
 
     public OrderMain(UserAccount customer) {
         this.customerEmail = customer.getEmail();

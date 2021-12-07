@@ -6,24 +6,26 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
-
 @Entity
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "category")
-public class Category {
-
+@Table(name = "subcategory")
+public class SubCategory {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "SUBCATEGORY_ID")
+    private Integer subCategoryId;
+
     @Column(name = "CATEGORY_ID")
     private Integer categoryId;
 
-    @Column(name = "CATEGORY_NAME")
-    private String categoryName;
+    @Column(name = "SUBCATEGORY_NAME")
+    private String subCategoryName;
 
-    public Category(String categoryName, Integer categoryId) {
-        this.categoryName = categoryName;
+    public SubCategory(String subCategoryName, Integer subCategoryId, Integer categoryId) {
+        this.subCategoryName = subCategoryName;
+        this.subCategoryId = subCategoryId;
         this.categoryId = categoryId;
     }
 }
